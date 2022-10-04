@@ -85,7 +85,9 @@ const TriggerPopupButton = () => {
 
   return (
     <div>
-      <button onClick={handleClick}>Click here to open pop-up with custom events</button>
+      <button onClick={handleClick}>
+        Click here to open pop-up with event name <strong>login</strong>
+      </button>
       <Modal isOpen={isModalOpen} onRequestClose={handleModalClose}>
         <PopupCloseButton onClick={handleModalClose}>x</PopupCloseButton>
         {stepType === 'initial' && (
