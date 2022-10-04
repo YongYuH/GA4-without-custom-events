@@ -1,3 +1,4 @@
+import linaria from '@linaria/esbuild'
 import browserSync from 'browser-sync'
 import { build, BuildOptions } from 'esbuild'
 import fastify from 'fastify'
@@ -8,6 +9,8 @@ const protocal = process?.env?.port || 'http'
 const host = process?.env?.port || 'localhost'
 const port = process?.env?.port || 3000
 const url = `${protocal}://${host}:${port}`
+
+const prod = process.env.NODE_ENV === 'production'
 
 const Fastify = fastify()
 const bs = browserSync.create()
@@ -26,6 +29,11 @@ const buildOptions: BuildOptions = {
       }
     },
   },
+  plugins: [
+    linaria({
+      sourceMap: prod,
+    }),
+  ],
 }
 
 const devApp = async () => {
